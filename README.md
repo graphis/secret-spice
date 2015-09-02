@@ -1,5 +1,7 @@
 # secret-spice
 
-simple app skeleton based on:
-bramous router
-and some simple classes
+A very lightweight KISS framework that uses bramus (http://www.bram.us/) as the base router.
+
+Array class  --  from fuelphp 2
+Uri class
+
