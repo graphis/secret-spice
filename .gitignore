@@ -1,0 +1,9 @@
+# golobal
+.DS_Store
+composer.lock
+
+
+
+# folders
+/system/vendor/*
+/_tmp/*
