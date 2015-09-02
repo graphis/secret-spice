@@ -59,6 +59,11 @@ define('APP_MEMORY_USAGE', memory_get_peak_usage());
 require SYSPATH.'vendor/autoload.php';
 
 
+    //create an instance of the autoloader.
+    $loader = require '../app/library/vendor/autoload.php';    
+    $loader->add("kiss", __DIR__.'/../app/library/');
+    $loader->add("models", __DIR__.'/../app/');
+
 
 // Bootstrap the application
 require APPPATH.'boot.php';
