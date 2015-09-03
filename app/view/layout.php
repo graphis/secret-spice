@@ -1,4 +1,11 @@
 ___LAYOUT___
+
+<a href="/page/mikkamakka">mikkamakka | </a>
+<a href="/page/zorromorro">zorromorro | </a>
+<a href="/page/neduddki">neduddki</a>
+
+
+
 <hr/>
 
 <?php 
