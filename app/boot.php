@@ -157,7 +157,30 @@ $router->get('/crypto/(.*)', function ($url) use ($url, $view) {
 
 
 
+// page includer
+$router->get('/page/(\w+)', function ($filename) use ($view)
+{
+   //  echo 'Hello ' . htmlentities($name);
 
+	// 01 / new view
+	// $view = new View();
+	$view->load('layout');
+
+	// 02 / sample data
+//	$page_data = [
+//		"filename"  => $filename,
+//		"extension"  => ".php",
+//	];
+
+	$page = APPPATH . 'view/___partial/' . $filename . '.php';
+
+
+
+
+	// 03 / assign the data
+	$view->assign('page', $page);
+
+});
 
 
 

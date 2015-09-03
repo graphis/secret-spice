@@ -26,7 +26,20 @@ if (isset($crypto_data)) {
   // echo "not set";
 }
 ?>
-
+<?php
+if (isset($page)) {
+  print_r( $page );
+  
+  if( file_exists( $page ) !== false)
+  {
+	  include $page;
+  }
+  
+  
+} else {
+  // echo "not set";
+}
+?>
 
 </pre>
 
