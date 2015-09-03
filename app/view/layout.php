@@ -59,3 +59,22 @@ echo 'memory: ' . number_format((memory_get_peak_usage() - APP_MEMORY_USAGE) / 1
 
 
 
+<hr>
+todo
+
+<pre>
+	<code>
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+{
+
+	exit;
+
+}
+
+continue;
+	</code>
+</pre>
+
+
+
+
