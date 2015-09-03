@@ -49,8 +49,9 @@ $router->before('GET', '/.*', function () use ($view)
 	// $view = new View();
 	$view->load('layout');
 
-	echo '<br/>Menu: ' . '<a href="/">home __________ ' . '<a href="/hello/world">hello world</a> __________ ' . '<a href="/crypto/zzzxxxzzz">crypto</a> __________ ';
-
+	$menu = '<br/>Menu: ' . '<a href="/">home __________ ' . '<a href="/hello/world">hello world</a> __________ ' . '<a href="/crypto/zzzxxxzzz">crypto</a> __________ ';
+	
+	$view->assign('menu_demo', $menu);
 });
 
 
@@ -114,8 +115,17 @@ $router->get('/crypto/(.*)', function ($url) use ($url, $view) {
 	$decrypted_txt = $enc_dec->encrypt_decrypt('decrypt', $encrypted_txt);
 	//echo "Decrypted Text = $decrypted_txt\n <br/>";
 
-	if( $plain_txt === $decrypted_txt ) echo "SUCCESS <br/>";
-	else echo "FAILED <br/>";
+	// error check
+	/*
+	if( $plain_txt === $decrypted_txt )
+	{
+		echo "SUCCESS <br/>";
+	}
+	else
+	{
+		echo "FAILED <br/>";
+	}
+	*/
 
 	if (!empty( $url->getSegment(2) )) {
 

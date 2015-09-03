@@ -1,4 +1,16 @@
 ___LAYOUT___
+<hr/>
+
+<?php 
+if (isset($menu_demo)) {
+  print_r( $menu_demo );
+} else {
+  // echo "not set";
+}
+?>
+
+<hr/>
+
 <pre>
 <?php 
 if (isset($data)) {
@@ -7,10 +19,6 @@ if (isset($data)) {
   // echo "not set";
 }
 ?>
-
-
-
-
 <?php
 if (isset($crypto_data)) {
   print_r( $crypto_data );
@@ -23,7 +31,7 @@ if (isset($crypto_data)) {
 </pre>
 
 
-
+<hr/>
 ___end_LAYOUT___
 
 
