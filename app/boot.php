@@ -12,14 +12,28 @@
 use Bramus\Router\Router;
 
 // application classes
+require_once( APPPATH . 'Classes/Autoloader.php');
+
+
+//	Autoloader::loader('View');
+//	Autoloader::loader('Utility');
+//	Autoloader::loader('Uri');
+
 include '../app/classes/View.php';
 include '../app/classes/Utility.php';
 include '../app/classes/Uri.php';
 
 
-use App\View;
-use App\Uri;
+try {
 
+} catch (Exception $e) {
+    echo $e->getMessage(), "\n";
+}
+
+use \App\View;
+use \App\Uri;
+
+// use Space\View;
 
 
 
