@@ -1,20 +1,7 @@
 <?php
 /**
- * @package    Fuel\Foundation
- * @version    2.0
- * @author     Fuel Development Team
- * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
- * @link       http://fuelphp.com
- */
-
-
-
-/**
- *
- * modified based on 	// http://codereview.stackexchange.com/questions/9114/uri-parsing-and-handling-class
- * not need to pass the uri to this class
- *
+ * View-specific wrapper.
+ * Limits the accessible scope available to templates.
  */
 
 
@@ -23,31 +10,50 @@ namespace App;
 
 
 
-/**
- * Uri class
- *
- * @package  Fuel\Foundation
- *
- * @since  2.0.0
- */
 class View
 {
+	/**
+	 * View file to include
+	 * @var string
+	 */
+	private $file;
 
+	/**
+	 * View data
+	 * @var array
+	 */
 	private $data = array();
 
+	/**
+	 * View data
+	 * @var boolean
+	 */
 	private $render = FALSE;
 
+	/**
+	 * Layout to include (optional)
+	 * @var string
+	 */
+	private $layout;
+
+    /**
+     * Initialize a new view context.
+     */
 	public function __construct()
 	{
 		//
 	}
 
-	//
-	public function load($template)
+    /**
+     * Initialize a new view context.
+	 *
+	 * @param string $file file to include
+	 */
+	public function load($layout)
 	{
 
     	try {
-			$file = APPPATH . 'view/' . $template . '.php';
+			$file = APPPATH . 'view/' . $layout . '.php';
 
         	if (file_exists($file)) {
         		$this->render = $file;
@@ -62,20 +68,47 @@ class View
     	}
 	}
 
-	//
+    /**
+     * Safely escape/encode the provided data.
+     */
+    public function h($data)
+	{
+        return htmlspecialchars((string) $data, ENT_QUOTES, 'UTF-8');
+    }
+
+    /**
+     * Render the template, returning it's content.
+	 * @param string $variable name of the data made available to the view.
+     * @param array $value Data made available to the view.
+     * @return string The rendered template.
+     */
 	public function assign($variable, $value)
 	{
     	$this->data[$variable] = $value;
 	}
 
-	//
+    /**
+     * Render the template, returning it's content.
+     * @return string The rendered template.
+     */
 	public function display()
 	{
     	extract($this->data);
-    	include($this->render);
+		
+		// ob_start();
+		// var_dump ( ob_get_level() );
+    	$content = include($this->render);
+
+		// $content = ob_get_clean();
+		// $content = strtolower($content);
+		
+		return $content;
+		
 	}
 
-	//
+    /**
+     * __destruct
+     */
 	public function __destruct()
 	{
 		//
