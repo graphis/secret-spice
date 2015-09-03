@@ -13,8 +13,12 @@ use Bramus\Router\Router;
 
 // application classes
 include '../app/classes/View.php';
-use App\View;
+include '../app/classes/Utility.php';
+include '../app/classes/Uri.php';
 
+
+use App\View;
+use App\Uri;
 
 
 
@@ -26,9 +30,9 @@ use App\View;
 
 // setting up view
 $view = new View();
-
-// setting up router
 $router = new Router();
+// setting up router
+$url = new Uri();
 
 // 404
 $router->set404(function() {
@@ -36,12 +40,30 @@ $router->set404(function() {
 	echo '404 | Page not found!';
 });
 
+
+// before
+$router->before('GET', '/.*', function () use ($view)
+{
+
+	// 01 / new view
+	// $view = new View();
+	$view->load('layout');
+
+	echo '<br/>Menu: ' . '<a href="/">home __________ ' . '<a href="/hello/world">hello world</a> __________ ' . '<a href="/crypto/zzzxxxzzz">crypto</a> __________ ';
+
+});
+
+
+
+
+
+
 // /home
 $router->get('/', function() use ($view)
 {
 	// 01 / new view
 	// $view = new View();
-	$view->load('layout');
+	// $view->load('layout');
 
 	// 02 / sample data
 	$sample_data = [
@@ -54,17 +76,77 @@ $router->get('/', function() use ($view)
 
 });
 
-
-
-
-
-
-
-// before
-$router->before('GET', '/.*', function()
+// hello/world
+$router->get('/hello/(\w+)', function ($name) use ($view)
 {
-    // echo '// ... this will always be executed';
+   //  echo 'Hello ' . htmlentities($name);
+
+	// 01 / new view
+	// $view = new View();
+	$view->load('layout');
+
+	// 02 / sample data
+	$sample_data = [
+		"name" => $name,
+		"say"  => "this is a dream",
+	];
+
+	// 03 / assign the data
+	$view->assign('data', $sample_data);
+
 });
+
+
+
+// crypto
+// Dynamic route: /ohai/name/in/parts
+$router->get('/crypto/(.*)', function ($url) use ($url, $view) {
+    // echo 'Ohai ' . htmlentities($url);
+	
+	//$zzz = new Uri();
+	$enc_dec = new Utility();
+	$plain_txt = $url->getSegment(2);
+	//echo "Plain Text = $plain_txt\n <br/>";
+
+	$encrypted_txt = $enc_dec->encrypt_decrypt('encrypt', $plain_txt);
+	//echo "Encrypted Text = $encrypted_txt\n <br/>";
+
+	$decrypted_txt = $enc_dec->encrypt_decrypt('decrypt', $encrypted_txt);
+	//echo "Decrypted Text = $decrypted_txt\n <br/>";
+
+	if( $plain_txt === $decrypted_txt ) echo "SUCCESS <br/>";
+	else echo "FAILED <br/>";
+
+	if (!empty( $url->getSegment(2) )) {
+
+		$decrypted_txt = $enc_dec->encrypt_decrypt('decrypt', $url->getSegment(2));
+		//echo "Decrypted Text = $decrypted_txt\n <br/>";  
+
+	}
+	else
+	{  
+	    //echo "N0, mail is not set";
+	}
+
+
+
+	// 02 / sample data
+	$crypto_data = [
+		"plain_text"     => $plain_txt,
+		"encrypted_txt"  => $encrypted_txt,
+		"decrypted_txt"  => $decrypted_txt,
+	];
+
+	// 03 / assign the data
+	$view->assign('crypto_data', $crypto_data);
+
+
+});
+
+
+
+
+
 
 
 
