@@ -55,17 +55,14 @@ define('APP_MEMORY_USAGE', memory_get_peak_usage());
 
 
 
-// Load vendor stuff
-require SYSPATH.'vendor/autoload.php';
 
+//create an instance of the autoloader.
+$loader = require SYSPATH.'vendor/autoload.php';    
 
-    //create an instance of the autoloader.
-    $loader = require '../app/library/vendor/autoload.php';    
-    $loader->add("kiss", __DIR__.'/../app/library/');
-    $loader->add("models", __DIR__.'/../app/');
 
 
 // Bootstrap the application
+// $loader->add("app", APPPATH.'classes');
 require APPPATH.'boot.php';
 
 
