@@ -30,7 +30,8 @@ class Utility
 	 * @return string
 	 */
 	// https://naveensnayak.wordpress.com/2013/03/12/simple-php-encrypt-and-decrypt/
-	function encrypt_decrypt($action, $string) {
+	function encrypt_decrypt($action, $string)
+	{
 	    $output = false;
 
 	    $encrypt_method = "AES-256-CBC";
