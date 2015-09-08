@@ -1,14 +1,78 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+
+<!-- Meta -->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>___DEMO___</title>
+
+<!-- CSS -->
+<link href="/resources/ui/css/normalize.css" rel="stylesheet" />
+<link href="/resources/ui/css/global.css" rel="stylesheet" />
+
+<link href="/resources/ui/css/main.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+
+<hr/>
+
+
+
 ___LAYOUT___
 
-<a href="/page/mikkamakka">mikkamakka | </a>
-<a href="/page/zorromorro">zorromorro | </a>
-<a href="/page/neduddki">neduddki</a>
+<a href="page/mikkamakka">mikkamakka | </a>
+<a href="page/zorromorro">zorromorro | </a>
+<a href="page/neduddki">neduddki</a>
 
 
 <a href="/crypto/aVptOFNXTDFrQ3NDWnJPa2hmd1A3QT09">zzzxxxzzz</a>
 
 
 <hr/>
+<div class="container" id="main">
+
+
+<div>
+<?php
+
+
+if(isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == 'true'){
+    echo 'GGGGG';
+}
+else
+{
+    // Output content with wrapper/layout
+	    // echo 'GGHHHHHHPPP';
+}
+
+
+
+
+
+$title = "Home page";
+
+
+print_r($_SERVER["HTTP_X_PJAX"]);
+
+if($_SERVER["HTTP_X_PJAX"])
+{
+	echo "____________" . $_SERVER["HTTP_X_PJAX"] . "________________________";
+	echo "____________ OYUFYFKHFY PJAX ________________________";
+}
+else
+{
+	// echo "____________ NO PJAX ________________________";
+}
+	
+
+	
+?>
+</div>
 
 <?php 
 if (isset($menu_demo)) {
@@ -52,6 +116,7 @@ if (isset($page)) {
 
 </pre>
 
+</div>
 
 <hr/>
 ___end_LAYOUT___
@@ -87,3 +152,18 @@ continue;
 
 
 
+
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="/resources/ui/js/vendor/jquery/jquery-1.11.2.min.js"><\/script>')</script>
+
+	<script src="/resources/ui/js/vendor/defunkt/jquery.cookie.js"></script>
+	<script src="/resources/ui/js/vendor/defunkt/jquery.pjax.js"></script>
+
+	<script src="/resources/ui/js/main.js"></script>
+
+
+
+</body>
+
+</html>

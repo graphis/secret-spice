@@ -47,7 +47,16 @@ $router->before('GET', '/.*', function () use ($view)
 
 	// 01 / new view
 	// $view = new View();
-	$view->load('layout');
+
+	if(isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == 'true'){
+	    echo 'GGGGG';
+	}
+	else
+	{
+	    // Output content with wrapper/layout
+		    // echo 'GGHHHHHHPPP';
+			$view->load('layout');
+	}
 
 	$menu = '<br/>Menu: ' . '<a href="/">home __________ ' . '<a href="/hello/world">hello world</a> __________ ' . '<a href="/crypto/zzzxxxzzz">crypto</a> __________ ';
 	
@@ -78,7 +87,7 @@ $router->get('/', function() use ($view)
 });
 
 // hello/world
-$router->get('/hello/(\w+)', function ($name) use ($view)
+$router->get('hello/(\w+)', function ($name) use ($view)
 {
    //  echo 'Hello ' . htmlentities($name);
 
@@ -101,7 +110,7 @@ $router->get('/hello/(\w+)', function ($name) use ($view)
 
 // crypto
 // Dynamic route: /ohai/name/in/parts
-$router->get('/crypto/(.*)', function ($url) use ($url, $view) {
+$router->get('crypto/(.*)', function ($url) use ($url, $view) {
     // echo 'Ohai ' . htmlentities($url);
 	
 	//$zzz = new Uri();
@@ -158,7 +167,7 @@ $router->get('/crypto/(.*)', function ($url) use ($url, $view) {
 
 
 // page includer
-$router->get('/page/(\w+)', function ($filename) use ($view)
+$router->get('page/(\w+)', function ($filename) use ($view)
 {
    //  echo 'Hello ' . htmlentities($name);
 
