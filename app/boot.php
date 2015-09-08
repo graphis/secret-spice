@@ -29,7 +29,7 @@ use App\Uri;
 
 
 // setting up view
-$view = new View();
+// $view = new View();
 $router = new Router();
 // setting up router
 $url = new Uri();
@@ -41,22 +41,35 @@ $router->set404(function() {
 });
 
 
+
+
+$view = new View();
+$view->load('layout');
+
+
+
 // before
 $router->before('GET', '/.*', function () use ($view)
 {
 
 	// 01 / new view
 	// $view = new View();
+//	if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+//	{
+		// exit;
+//		echo 'KKKKKKK JJJJJJJ HHHHHHH ';
+//	}
 
-	if(isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == 'true'){
-	    echo 'GGGGG';
-	}
-	else
-	{
+//	if(isset( $_SERVER['HTTP_X_PJAX'] ) && $_SERVER['HTTP_X_PJAX'] == TRUE){
+//	    echo $_SERVER['HTTP_X_PJAX'];
+		// $view->load('layout');
+//	}
+//	else
+//	{
 	    // Output content with wrapper/layout
 		    // echo 'GGHHHHHHPPP';
-			$view->load('layout');
-	}
+			
+//	}
 
 	$menu = '<br/>Menu: ' . '<a href="/">home __________ ' . '<a href="/hello/world">hello world</a> __________ ' . '<a href="/crypto/zzzxxxzzz">crypto</a> __________ ';
 	
@@ -93,7 +106,7 @@ $router->get('hello/(\w+)', function ($name) use ($view)
 
 	// 01 / new view
 	// $view = new View();
-	$view->load('layout');
+	// $view->load('layout');
 
 	// 02 / sample data
 	$sample_data = [
@@ -173,7 +186,7 @@ $router->get('page/(\w+)', function ($filename) use ($view)
 
 	// 01 / new view
 	// $view = new View();
-	$view->load('layout');
+	// $view->load('layout');
 
 	// 02 / sample data
 //	$page_data = [

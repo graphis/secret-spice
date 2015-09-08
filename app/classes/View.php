@@ -52,20 +52,30 @@ class View
 	public function load($layout)
 	{
 
-    	try {
-			$file = APPPATH . 'view/' . $layout . '.php';
 
-        	if (file_exists($file)) {
-        		$this->render = $file;
-        	} else {
-            	// throw new customException('Template ' . $template . ' not found!');
-				echo '1';
-        	}
-    	}
-   	 	catch (Exception $e) {
-     	   // echo $e->errorMessage();
-		   echo '2';
-    	}
+
+		    // Output content with wrapper/layout
+			    // echo 'GGHHHHHHPPP';
+				// $view->load('layout');
+		    	try {
+					$file = APPPATH . 'view/' . $layout . '.php';
+
+		        	if (file_exists($file)) {
+		        		$this->render = $file;
+		        	} else {
+		            	// throw new customException('Template ' . $template . ' not found!');
+						echo 'template not found';
+		        	}
+		    	}
+		   	 	catch (Exception $e) {
+		     	   // echo $e->errorMessage();
+				   echo '2';
+		    	}
+		
+				//$this->layout = $layout;
+
+
+
 	}
 
     /**
@@ -93,16 +103,35 @@ class View
      */
 	public function display()
 	{
-    	extract($this->data);
+    	
 		
 		// ob_start();
 		// var_dump ( ob_get_level() );
-    	$content = include($this->render);
+
+		if(isset( $_SERVER['HTTP_X_PJAX'] ) && $_SERVER['HTTP_X_PJAX'] == 'true'){
+		    // echo $_SERVER['HTTP_X_PJAX'];
+			// $view->load('layout');
+			extract($this->data);
+
+		}
+		else
+		{
+		    // Output content with wrapper/layout
+			    // echo 'GGHHHHHHPPP';
+				// $view->load('layout');
+				extract($this->data);
+				$content = include($this->render);
+
+
+		}
+		
+
+    	// $content = include($this->render);
 
 		// $content = ob_get_clean();
 		// $content = strtolower($content);
 		
-		return $content;
+		// return $content;
 		
 	}
 

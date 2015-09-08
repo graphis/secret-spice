@@ -22,7 +22,7 @@ $(document).ready(function() {
 //});
 
 
-
+});
 
 var direction = "right";
 
@@ -49,4 +49,3 @@ else window.onload = autorun;
 
 
 
-});

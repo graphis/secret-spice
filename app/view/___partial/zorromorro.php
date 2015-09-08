@@ -1,13 +1,14 @@
 <?php
 $title = "Home page";
 
-if($_SERVER["HTTP_X_PJAX"])
+if( isset ($_SERVER["HTTP_X_PJAX"] ) )
 {
-	echo "XXXXXXX____________" . $_SERVER["HTTP_X_PJAX"] . "________________________";
+	echo "____________" . $_SERVER["HTTP_X_PJAX"] . "________________________";
+	echo "____________ OYUFYFKHFY PJAX ________________________";
 }
 else
 {
-	echo "____________ NO PJAX ________________________";
+	// echo "____________ NO PJAX ________________________";
 }
 	
 

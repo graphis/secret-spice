@@ -30,7 +30,7 @@ ___LAYOUT___
 <a href="page/neduddki">neduddki</a>
 
 
-<a href="/crypto/aVptOFNXTDFrQ3NDWnJPa2hmd1A3QT09">zzzxxxzzz</a>
+<a href="crypto/aVptOFNXTDFrQ3NDWnJPa2hmd1A3QT09">zzzxxxzzz</a>
 
 
 <hr/>
@@ -57,9 +57,9 @@ else
 $title = "Home page";
 
 
-print_r($_SERVER["HTTP_X_PJAX"]);
 
-if($_SERVER["HTTP_X_PJAX"])
+
+if( isset ($_SERVER["HTTP_X_PJAX"] ) )
 {
 	echo "____________" . $_SERVER["HTTP_X_PJAX"] . "________________________";
 	echo "____________ OYUFYFKHFY PJAX ________________________";
@@ -146,6 +146,32 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED
 }
 
 continue;
+
+
+
+http://stackoverflow.com/questions/10734741/how-to-build-a-good-router-for-php-mvc
+// safe array
+Your code contains what is known as an LFI vulnerability and is dangerous in its current state.
+You should whitelist your what can be used as your $controller, as otherwise an attacker could try to specify something using NUL bytes and possibly going up a directory to include files that SHOULD NOT be ever included, such as /etc/passwd, a config file, whatever.
+
+Your router is not safe for use; beware!
+
+edit: example on whitelisting
+
+$safe = array(
+    'ajax',
+    'somecontroller',
+    'foo',
+    'bar',
+);
+if(!in_array($this->_controller, $safe))
+{
+    throw new Exception(); // replace me with your own error 404 stuff
+}
+
+
+
+
 	</code>
 </pre>
 
